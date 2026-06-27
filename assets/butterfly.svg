@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" fill="none">
+  <defs>
+    <linearGradient id="wing" x1="8" y1="7" x2="108" y2="92" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF7D6"/><stop offset=".45" stop-color="#D9BF78"/><stop offset="1" stop-color="#8E71C7"/>
+    </linearGradient>
+  </defs>
+  <path d="M57 46C50 19 27 3 13 10-1 18 7 44 31 55 13 58 6 72 12 84c7 14 31 3 45-20" stroke="url(#wing)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M63 46C70 19 93 3 107 10c14 8 6 34-18 45 18 3 25 17 19 29-7 14-31 3-45-20" stroke="url(#wing)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M60 39v42M60 42c-8-14-13-19-20-22M60 42c8-14 13-19 20-22" stroke="#EAD69B" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M20 23c12 1 24 9 31 22M100 23c-12 1-24 9-31 22M21 72c10-7 21-9 31-8M99 72c-10-7-21-9-31-8" stroke="url(#wing)" stroke-width="1.4" opacity=".75"/>
+  <circle cx="60" cy="48" r="3" fill="#F5E6B9"/>
+</svg>
