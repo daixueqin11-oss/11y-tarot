@@ -30,6 +30,7 @@
       <h1>静下心来，<br>想着你的问题。</h1>
       <p class="hero-copy">塔罗不会替你决定未来，<br>但可以照见你此刻未曾看见的部分。</p>
       <a class="button button-primary" href="#reading">开始一次抽牌 <span>→</span></a>
+      <button class="today-link" id="todayQuick">只想抽一张今日指引 <span>↘</span></button>
       <p class="trust-note"><span>无需注册</span><span>完全免费</span><span>仅保存在本机</span></p>
       <div class="scroll-cue">向下探索 <i></i></div>
     </section>
@@ -52,13 +53,20 @@
         <div class="field-grid" id="fieldGrid"></div>
         <div class="question-panel glass-card">
           <label for="question">写下你的问题 <small>也可以留空，在心中默念</small></label>
-          <textarea id="question" maxlength="180" placeholder="例如：未来三个月，这段关系可能如何发展？我需要看清什么？"></textarea>
+          <textarea id="question" maxlength="300" placeholder="例如：未来三个月，这段关系可能如何发展？我需要看清什么？"></textarea>
+          <div class="question-meta-grid">
+            <label class="compact-field">时间范围<select id="timeRange"><option value="current">当前</option><option value="1_month">1个月</option><option value="3_months" selected>3个月</option><option value="6_months">6个月</option><option value="1_year">1年</option><option value="custom">自定义</option></select><input id="customTimeRange" type="text" maxlength="30" placeholder="例如：下学期结束前" hidden></label>
+            <label class="compact-field">补充背景（可选）<textarea id="background" maxlength="500" placeholder="只写与问题相关的事实，不必提供姓名或隐私信息。"></textarea></label>
+          </div>
           <div class="question-helper" id="questionHelper">尽量询问“我可以看清什么、做些什么”，而不是要求一个绝对的预言。</div>
-          <div class="form-actions"><span id="questionCount">0 / 180</span><button class="button button-primary" id="toSpreads">选择牌阵 →</button></div>
+          <div class="form-actions"><span id="questionCount">0 / 300</span><button class="button button-primary" id="toSpreads">检查问题 →</button></div>
+          <div class="refine-panel" id="refinePanel" hidden></div>
+          <div class="risk-panel" id="riskPanel" hidden></div>
         </div>
       </div>
 
       <div class="reading-stage" data-stage="2">
+        <div class="recommendation" id="spreadRecommendation" hidden></div>
         <div class="spread-grid" id="spreadGrid"></div>
         <div class="stage-actions"><button class="button button-ghost" data-back="1">← 返回问题</button><button class="button button-primary" id="toDraw" disabled>进入抽牌室 →</button></div>
       </div>
@@ -90,7 +98,7 @@
     </section>
 
     <section id="records" class="section records-section">
-      <div class="section-heading left"><span class="eyebrow">PRIVATE JOURNAL</span><h2>我的占卜记录</h2><p>记录只保存在当前设备的浏览器中，不上传，也不要求登录。</p></div>
+      <div class="section-heading left records-heading"><div><span class="eyebrow">PRIVATE JOURNAL</span><h2>我的占卜记录</h2><p>记录只保存在当前设备的浏览器中，不上传，也不要求登录。</p></div><button class="button button-ghost" id="clearRecords">删除全部本地数据</button></div>
       <div id="recordsList" class="records-list"></div>
     </section>
 
@@ -109,6 +117,6 @@
 
   <footer><a class="brand" href="#home"><span class="brand-mark"><img src="assets/butterfly.svg" alt=""></span><span>11y塔罗牌</span></a><p>愿你不是得到一个答案，而是更靠近自己的声音。</p><div><a href="#guide">隐私说明</a><a href="#guide">免责声明</a></div></footer>
   <div class="toast" id="toast" role="status"></div>
-  <script src="app.js?v=sound-3"></script>
+  <script src="app.js?v=product-1"></script>
 </body>
 </html>
