@@ -29,3 +29,17 @@ init();
 const resultObserver=new MutationObserver(()=>{$$('.tarot-card').forEach((card,i)=>{card.setAttribute('role','button');card.setAttribute('tabindex','0');card.setAttribute('aria-label',`翻开第 ${i+1} 张牌`);card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();revealCard(card)}}})});
 resultObserver.observe($('#resultView'),{childList:true,subtree:true});
 $('#shuffleButton').addEventListener('click',()=>{if($('#shuffleButton').textContent==='停止洗牌')$('#drawStatus').textContent='牌正在流动。感觉合适时，再点一次停止。'});
+
+const soundscape=(()=>{
+  let context,master,drone=[],chimeTimer,enabled=false;
+  const ensure=()=>{if(!context){context=new(window.AudioContext||window.webkitAudioContext)();master=context.createGain();master.gain.value=.55;master.connect(context.destination)}if(context.state==='suspended')context.resume();return context};
+  const tone=(frequency,duration=.5,volume=.035,type='sine',delay=0)=>{if(!enabled)return;const ctx=ensure(),osc=ctx.createOscillator(),gain=ctx.createGain(),now=ctx.currentTime+delay;osc.type=type;osc.frequency.setValueAtTime(frequency,now);gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(volume,now+.035);gain.gain.exponentialRampToValueAtTime(.0001,now+duration);osc.connect(gain).connect(master);osc.start(now);osc.stop(now+duration+.05)};
+  const chime=()=>{tone(659.25,2.8,.018,'sine');tone(987.77,2.2,.011,'sine',.12);tone(1318.51,1.8,.006,'sine',.28)};
+  const start=()=>{const ctx=ensure();enabled=true;master.gain.cancelScheduledValues(ctx.currentTime);master.gain.setTargetAtTime(.55,ctx.currentTime,.5);[82.41,123.47].forEach((frequency,index)=>{const osc=ctx.createOscillator(),gain=ctx.createGain();osc.type=index?'sine':'triangle';osc.frequency.value=frequency;gain.gain.value=index?.009:.012;osc.connect(gain).connect(master);osc.start();drone.push(osc)});chime();chimeTimer=setInterval(chime,12000)};
+  const stop=()=>{enabled=false;clearInterval(chimeTimer);if(context){master.gain.setTargetAtTime(.0001,context.currentTime,.3);drone.forEach(osc=>{try{osc.stop(context.currentTime+1)}catch{}});drone=[]}};
+  const effect=name=>{if(!enabled)return;if(name==='shuffle'){tone(196,.34,.025,'triangle');tone(293.66,.3,.018,'sine',.08)}if(name==='cut'){tone(246.94,.5,.027,'triangle');tone(369.99,.7,.017,'sine',.08)}if(name==='select'){tone(523.25,.55,.025,'sine');tone(783.99,.75,.012,'sine',.06)}if(name==='flip'){tone(659.25,.7,.028,'sine');tone(987.77,.9,.014,'sine',.08)}};
+  return{toggle(){enabled?stop():start();return enabled},effect};
+})();
+
+$('#soundToggle').onclick=()=>{const on=soundscape.toggle(),button=$('#soundToggle');button.classList.toggle('active',on);button.setAttribute('aria-pressed',String(on));button.setAttribute('aria-label',on?'关闭氛围音乐':'开启氛围音乐');button.querySelector('span').textContent=on?'♫':'♪';toast(on?'氛围音乐与仪式音效已开启':'声音已关闭')};
+document.addEventListener('click',event=>{const target=event.target.closest('button,.tarot-card');if(!target||target.id==='soundToggle')return;if(target.id==='shuffleButton')soundscape.effect('shuffle');else if(target.id==='cutButton')soundscape.effect('cut');else if(target.classList.contains('deck-card')&&target.classList.contains('chosen'))soundscape.effect('select');else if(target.classList.contains('tarot-card'))soundscape.effect('flip')});
