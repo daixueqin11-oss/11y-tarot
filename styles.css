@@ -35,3 +35,8 @@ body{background:radial-gradient(ellipse at 50% -10%,rgba(98,67,151,.32),transpar
 @keyframes wingFloat{0%,100%{transform:translateY(2px) scale(1)}50%{transform:translateY(-5px) scale(1.04)}}
 @keyframes slowTurn{to{transform:rotate(360deg)}}
 @keyframes goldShimmer{0%,100%{background-position:0 0}50%{background-position:100% 0}}
+
+/* Sound controls */
+.header-tools{display:flex;align-items:center;gap:22px}.sound-toggle{height:38px;padding:0 13px;border:1px solid rgba(214,193,141,.2);border-radius:100px;background:rgba(19,15,34,.58);color:#aaa4b8;display:flex;align-items:center;gap:7px;cursor:pointer;transition:.25s}.sound-toggle span{font-size:17px;color:var(--gold)}.sound-toggle i{font-style:normal;font-size:11px;letter-spacing:.08em}.sound-toggle:hover,.sound-toggle.active{border-color:rgba(218,196,137,.5);color:var(--gold2);box-shadow:0 0 24px rgba(134,91,187,.16)}.sound-toggle.active span{animation:soundPulse 2.4s ease-in-out infinite}
+@keyframes soundPulse{50%{transform:scale(1.16);text-shadow:0 0 10px rgba(239,218,160,.7)}}
+@media(max-width:640px){.header-tools{gap:9px}.sound-toggle{width:38px;padding:0;justify-content:center}.sound-toggle i{display:none}}
