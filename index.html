@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0a18">
+  <meta name="description" content="一间安静、免费、没有付费陷阱的线上塔罗室。通过提问、抽牌与结构化解读，完成一次有尊严的自我对话。">
+  <title>11y塔罗牌｜安静地，看见此刻</title>
+  <link rel="stylesheet" href="styles.css?v=butterfly-2">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="11y塔罗牌首页">
+      <span class="brand-mark"><img src="assets/butterfly.svg" alt=""></span><span>11y塔罗牌</span>
+    </a>
+    <button class="nav-toggle" aria-label="打开导航" aria-expanded="false">☰</button>
+    <nav class="site-nav" aria-label="主导航">
+      <a href="#reading">免费抽牌</a><a href="#library">牌卡资料</a><a href="#records">占卜记录</a><a href="#guide">理性使用</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero section">
+      <div class="eyebrow">A QUIET TAROT ROOM · 永久免费</div>
+      <div class="hero-orbit" aria-hidden="true"><span>✦</span><b><img src="assets/butterfly.svg" alt=""></b><span>✧</span></div>
+      <h1>静下心来，<br>想着你的问题。</h1>
+      <p class="hero-copy">塔罗不会替你决定未来，<br>但可以照见你此刻未曾看见的部分。</p>
+      <a class="button button-primary" href="#reading">开始一次抽牌 <span>→</span></a>
+      <p class="trust-note"><span>无需注册</span><span>完全免费</span><span>仅保存在本机</span></p>
+      <div class="scroll-cue">向下探索 <i></i></div>
+    </section>
+
+    <section id="reading" class="reading-shell section">
+      <div class="section-heading">
+        <span class="eyebrow">YOUR READING</span>
+        <h2>让问题慢慢变清楚</h2>
+        <p>选择最接近你此刻困惑的领域。答案不急，我们先把问题问好。</p>
+      </div>
+
+      <div class="progress" aria-label="占卜进度">
+        <button class="progress-step active" data-jump="1"><b>01</b><span>问题</span></button>
+        <i></i><button class="progress-step" data-jump="2"><b>02</b><span>牌阵</span></button>
+        <i></i><button class="progress-step" data-jump="3"><b>03</b><span>抽牌</span></button>
+        <i></i><button class="progress-step" data-jump="4"><b>04</b><span>解读</span></button>
+      </div>
+
+      <div class="reading-stage active" data-stage="1">
+        <div class="field-grid" id="fieldGrid"></div>
+        <div class="question-panel glass-card">
+          <label for="question">写下你的问题 <small>也可以留空，在心中默念</small></label>
+          <textarea id="question" maxlength="180" placeholder="例如：未来三个月，这段关系可能如何发展？我需要看清什么？"></textarea>
+          <div class="question-helper" id="questionHelper">尽量询问“我可以看清什么、做些什么”，而不是要求一个绝对的预言。</div>
+          <div class="form-actions"><span id="questionCount">0 / 180</span><button class="button button-primary" id="toSpreads">选择牌阵 →</button></div>
+        </div>
+      </div>
+
+      <div class="reading-stage" data-stage="2">
+        <div class="spread-grid" id="spreadGrid"></div>
+        <div class="stage-actions"><button class="button button-ghost" data-back="1">← 返回问题</button><button class="button button-primary" id="toDraw" disabled>进入抽牌室 →</button></div>
+      </div>
+
+      <div class="reading-stage" data-stage="3">
+        <div class="ritual-header">
+          <span class="eyebrow">THE RITUAL</span><h2 id="ritualTitle">把注意力放回问题</h2>
+          <p id="ritualHint">点击洗牌。你可以在感觉合适时让牌停下来。</p>
+        </div>
+        <div class="ritual-controls">
+          <button class="button button-primary" id="shuffleButton">洗牌</button>
+          <button class="button button-ghost" id="cutButton" disabled>切牌一次</button>
+          <label class="switch"><input type="checkbox" id="reversalToggle"><span></span>启用逆位</label>
+        </div>
+        <div class="deck-table" id="deckTable" aria-live="polite"></div>
+        <div class="draw-status" id="drawStatus">准备好后，请先洗牌</div>
+        <div class="stage-actions"><button class="button button-ghost" data-back="2">← 更换牌阵</button><button class="button button-primary" id="revealButton" disabled>逐张翻牌 →</button></div>
+      </div>
+
+      <div class="reading-stage" data-stage="4">
+        <div id="resultView"></div>
+      </div>
+    </section>
+
+    <section id="library" class="section library-section">
+      <div class="section-heading left"><span class="eyebrow">THE 78 CARDS</span><h2>牌卡资料库</h2><p>不是标准答案，而是 78 面帮助你观察处境的镜子。</p></div>
+      <div class="library-tools"><input id="cardSearch" type="search" placeholder="搜索牌名或关键词"><div class="filter-pills" id="libraryFilters"></div></div>
+      <div class="card-library" id="cardLibrary"></div>
+    </section>
+
+    <section id="records" class="section records-section">
+      <div class="section-heading left"><span class="eyebrow">PRIVATE JOURNAL</span><h2>我的占卜记录</h2><p>记录只保存在当前设备的浏览器中，不上传，也不要求登录。</p></div>
+      <div id="recordsList" class="records-list"></div>
+    </section>
+
+    <section id="guide" class="section guide-section">
+      <div class="guide-card glass-card">
+        <div><span class="eyebrow">A GENTLE BOUNDARY</span><h2>把塔罗当作镜子，<br>而不是判决书。</h2></div>
+        <div class="guide-points">
+          <p><b>它适合</b>梳理情绪、看见盲点、探索选择与下一步行动。</p>
+          <p><b>它不替代</b>医疗、法律、心理治疗与投资等专业意见。</p>
+          <p><b>关于随机</b>所有牌均由浏览器随机抽取，不存在“通灵算法”。</p>
+          <p><b>关于冷静期</b>同一问题建议至少间隔 6 小时，避免焦虑性反复验证。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#home"><span class="brand-mark"><img src="assets/butterfly.svg" alt=""></span><span>11y塔罗牌</span></a><p>愿你不是得到一个答案，而是更靠近自己的声音。</p><div><a href="#guide">隐私说明</a><a href="#guide">免责声明</a></div></footer>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
