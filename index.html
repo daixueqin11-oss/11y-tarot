@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b0a18">
   <meta name="description" content="一间安静、免费、没有付费陷阱的线上塔罗室。通过提问、抽牌与结构化解读，完成一次有尊严的自我对话。">
   <title>11y塔罗牌｜安静地，看见此刻</title>
-  <link rel="stylesheet" href="styles.css?v=sound-3">
+  <link rel="stylesheet" href="styles.css?v=layout-1">
 </head>
 <body>
   <div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -25,21 +25,40 @@
 
   <main>
     <section id="home" class="hero section">
-      <div class="eyebrow">A QUIET TAROT ROOM · 永久免费</div>
-      <div class="hero-orbit" aria-hidden="true"><span>✦</span><b><img src="assets/butterfly.svg" alt=""></b><span>✧</span></div>
-      <h1>静下心来，<br>想着你的问题。</h1>
-      <p class="hero-copy">塔罗不会替你决定未来，<br>但可以照见你此刻未曾看见的部分。</p>
-      <a class="button button-primary" href="#reading">开始一次抽牌 <span>→</span></a>
-      <button class="today-link" id="todayQuick">只想抽一张今日指引 <span>↘</span></button>
-      <p class="trust-note"><span>无需注册</span><span>完全免费</span><span>仅保存在本机</span></p>
+      <div class="hero-inner">
+        <div class="hero-copy-block">
+          <div class="eyebrow">A QUIET TAROT ROOM · 永久免费</div>
+          <h1>静下心来，<br>想着你的问题。</h1>
+          <p class="hero-copy">塔罗不会替你决定未来，<br>但可以照见你此刻未曾看见的部分。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#reading">开始一次抽牌 <span>→</span></a>
+            <button class="today-link" id="todayQuick">只想抽一张今日指引 <span>↘</span></button>
+          </div>
+          <p class="trust-note"><span>无需注册</span><span>完全免费</span><span>仅保存在本机</span></p>
+        </div>
+        <aside class="hero-card glass-card" aria-label="11y塔罗室说明">
+          <div class="hero-orbit" aria-hidden="true"><span>✦</span><b><img src="assets/butterfly.svg" alt=""></b><span>✧</span></div>
+          <div class="hero-card-copy">
+            <span>安静 · 可信 · 无付费陷阱</span>
+            <p>每一次抽牌都只保存在你的设备里。它不是预言，而是一场有结构的自我对话。</p>
+          </div>
+          <div class="mini-flow" aria-hidden="true"><i>提问</i><i>抽牌</i><i>解读</i><i>行动</i></div>
+        </aside>
+      </div>
       <div class="scroll-cue">向下探索 <i></i></div>
     </section>
 
     <section id="reading" class="reading-shell section">
-      <div class="section-heading">
-        <span class="eyebrow">YOUR READING</span>
-        <h2>让问题慢慢变清楚</h2>
-        <p>选择最接近你此刻困惑的领域。答案不急，我们先把问题问好。</p>
+      <div class="section-heading reading-heading">
+        <div>
+          <span class="eyebrow">YOUR READING</span>
+          <h2>让问题慢慢变清楚</h2>
+          <p>选择最接近你此刻困惑的领域。答案不急，我们先把问题问好。</p>
+        </div>
+        <div class="reading-note">
+          <b>使用原则</b>
+          <span>不制造焦虑 · 不替你决定 · 不保存到云端</span>
+        </div>
       </div>
 
       <div class="progress" aria-label="占卜进度">
@@ -49,6 +68,7 @@
         <i></i><button class="progress-step" data-jump="4"><b>04</b><span>解读</span></button>
       </div>
 
+      <div class="reading-card">
       <div class="reading-stage active" data-stage="1">
         <div class="field-grid" id="fieldGrid"></div>
         <div class="question-panel glass-card">
@@ -89,6 +109,7 @@
       <div class="reading-stage" data-stage="4">
         <div id="resultView"></div>
       </div>
+      </div>
     </section>
 
     <section id="library" class="section library-section">
@@ -117,6 +138,6 @@
 
   <footer><a class="brand" href="#home"><span class="brand-mark"><img src="assets/butterfly.svg" alt=""></span><span>11y塔罗牌</span></a><p>愿你不是得到一个答案，而是更靠近自己的声音。</p><div><a href="#guide">隐私说明</a><a href="#guide">免责声明</a></div></footer>
   <div class="toast" id="toast" role="status"></div>
-  <script src="app.js?v=product-1"></script>
+  <script src="app.js?v=layout-1"></script>
 </body>
 </html>
